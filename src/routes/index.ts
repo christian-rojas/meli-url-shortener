@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import { createUrlShortener, deleteUrlShortener } from '../services'
+import { createUrlShortener, deleteUrlShortener } from '../controllers'
 
 export function createOrReturn (fastify: FastifyInstance, opts: any, done: any) {
     fastify.post('/create', createUrlShortener)
