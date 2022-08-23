@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./
+    volumes:
+      - .:/src
+    command: npm start
+    ports:
+      - "8080:8080"
+    networks:
+      - app-tier
+    environment:
+      NODE_ENV: development
+
+networks:
+  app-tier:
+    driver: bridge
