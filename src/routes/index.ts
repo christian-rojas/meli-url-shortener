@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import { createUrlShortener, deleteUrlShortener, baseShortener } from '../controllers'
+import { baseShortener, createUrlShortener, deleteUrlShortener, returnUrl } from '../controllers'
 
 export function createOrReturn (fastify: FastifyInstance, opts: any, done: any) {
     fastify.post('/create', createUrlShortener)
@@ -11,7 +11,12 @@ export function deleteRoute (fastify: FastifyInstance, opts: any, done: any) {
     done()
 }
 
-export function base (fastify: FastifyInstance, opts: any, done: any) {
+export function returnUrlRoute (fastify: FastifyInstance, opts: any, done: any) {
+    fastify.post('/urls', returnUrl)
+    done()
+}
+
+export function redirectRoute (fastify: FastifyInstance, opts: any, done: any) {
     fastify.get('/:base', baseShortener)
     done()
 }

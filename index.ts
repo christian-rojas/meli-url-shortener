@@ -1,22 +1,18 @@
 import fastify from 'fastify'
-import { base, createOrReturn, deleteRoute } from './src/routes'
+import { returnUrlRoute, createOrReturn, deleteRoute, redirectRoute } from './src/routes'
 import AWS from 'aws-sdk';
 
 const server = fastify()
 
 AWS.config.update({
   region: process.env.AWS_DEFAULT_REGION as string,
-  // other service API versions
 });
-
-// server.get('/ping', async (request, reply) => {
-//   return 'pong\n'
-// })
 
 server.register(createOrReturn, { prefix: '/v1' })
 server.register(deleteRoute, { prefix: '/v1' })
+server.register(returnUrlRoute, { prefix: '/v1' })
 
-server.register(base)
+server.register(redirectRoute)
 
 server.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
   if (err) {
