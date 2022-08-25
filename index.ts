@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import { createOrReturn, deleteRoute } from './src/routes'
+import { base, createOrReturn, deleteRoute } from './src/routes'
 import AWS from 'aws-sdk';
 
 const server = fastify()
@@ -15,6 +15,8 @@ AWS.config.update({
 
 server.register(createOrReturn, { prefix: '/v1' })
 server.register(deleteRoute, { prefix: '/v1' })
+
+server.register(base)
 
 server.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
   if (err) {
