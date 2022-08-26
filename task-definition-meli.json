@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
+  "executionRoleArn": "arn:aws:iam::254263330845:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/task-definition-meli",
+          "awslogs-group": "/ecs/task-meli",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -34,7 +34,7 @@
       "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 256,
+      "memoryReservation": 128,
       "volumesFrom": [],
       "stopTimeout": null,
       "image": "254263330845.dkr.ecr.us-east-1.amazonaws.com/meli-shortener-repository",
@@ -54,18 +54,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "meli-container"
+      "name": "meli-containerd"
     }
   ],
   "placementConstraints": [],
-  "memory": "1024",
-  "taskRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
+  "memory": "512",
+  "taskRoleArn": "arn:aws:iam::254263330845:role/ecsTaskExecutionRole",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:3",
-  "family": "task-definition-meli",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-meli:1",
+  "family": "task-meli",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -127,12 +127,9 @@
     "FARGATE"
   ],
   "networkMode": "awsvpc",
-  "runtimePlatform": {
-    "operatingSystemFamily": "LINUX",
-    "cpuArchitecture": null
-  },
-  "cpu": "512",
-  "revision": 3,
+  "runtimePlatform": null,
+  "cpu": "256",
+  "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
