@@ -37,7 +37,7 @@
       "memoryReservation": 128,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "254263330845.dkr.ecr.us-east-1.amazonaws.com/meli-shortener-repository",
+      "image": "254263330845.dkr.ecr.us-east-1.amazonaws.com/meli-shortener-repository:0abe9216163a31116cc3e7efd5564ff5f5f31465",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -64,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:4",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:10",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -132,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 4,
+  "revision": 10,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
