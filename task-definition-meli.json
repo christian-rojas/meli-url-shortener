@@ -25,7 +25,12 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [],
+      "environment": [
+        {
+          "name": "AWS_DEFAULT_REGION",
+          "value": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_DEFAULT_REGION::"
+        }
+      ],
       "resourceRequirements": null,
       "ulimits": null,
       "dnsServers": null,
@@ -33,16 +38,12 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret:AWS_ACCESS_KEY_ID",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_ACCESS_KEY_ID::",
           "name": "AWS_ACCESS_KEY_ID"
         },
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret:AWS_SECRET_ACCES_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_SECRET_ACCES_KEY::",
           "name": "AWS_SECRET_ACCES_KEY"
-        },
-        {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret:AWS_DEFAULT_REGION",
-          "name": "AWS_DEFAULT_REGION"
         }
       ],
       "dockerSecurityOptions": null,
@@ -72,12 +73,12 @@
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::254263330845:role/meli-secret-task-role",
+  "taskRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:12",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:15",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -151,7 +152,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 12,
+  "revision": 15,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
