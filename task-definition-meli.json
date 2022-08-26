@@ -29,10 +29,6 @@
         {
           "name": "AWS_DEFAULT_REGION",
           "value": "us-east-1"
-        },
-        {
-          "name": "AWS_SECRET_ACCES_KEY",
-          "value": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_SECRET_ACCES_KEY::"
         }
       ],
       "resourceRequirements": null,
@@ -42,8 +38,12 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_ACCESS_KEY_ID::",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9::AWS_ACCESS_KEY_ID:",
           "name": "AWS_ACCESS_KEY_ID"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9::AWS_SECRET_ACCES_KEY:",
+          "name": "AWS_SECRET_ACCES_KEY"
         }
       ],
       "dockerSecurityOptions": null,
@@ -78,7 +78,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:17",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:20",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -147,12 +147,9 @@
     "FARGATE"
   ],
   "networkMode": "awsvpc",
-  "runtimePlatform": {
-    "operatingSystemFamily": "LINUX",
-    "cpuArchitecture": null
-  },
+  "runtimePlatform": null,
   "cpu": "256",
-  "revision": 17,
+  "revision": 20,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
