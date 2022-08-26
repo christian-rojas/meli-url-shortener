@@ -58,7 +58,7 @@ export const returnLongUrl = async (url: string) => {
 		.httpResponse.body;
 	const res = Buffer.from(response, 'base64').toString();
 	const { Items } = JSON.parse(res);
-	return Items[0].shortUrl.S;
+	return Items[0].longUrl.S;
 };
 
 export const returnShortUrl = async (url: string) => {
@@ -74,7 +74,7 @@ export const returnShortUrl = async (url: string) => {
             .httpResponse.body;
         const parsedResponse = Buffer.from(response, 'base64').toString();
         const { Items } = JSON.parse(parsedResponse);
-        if(Items.length) return Items[0].longUrl.S
+        if(Items.length) return Items[0].shortUrl.S
         return { message: "no items found" }
     } catch (error) {
         return { message: "an error ocurred", error }
