@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::254263330845:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -25,20 +25,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "AWS_ACCESS_KEY_ID",
-          "value": "AKIATWM2GRAO3RAK4EPJ"
-        },
-        {
-          "name": "AWS_DEFAULT_REGION",
-          "value": "us-east-1"
-        },
-        {
-          "name": "AWS_SECRET_ACCES_KEY",
-          "value": "IKz2BzPU2hf+3CmGvcCamh1JjMFvkumyNtGAgVXx"
-        }
-      ],
+      "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
       "dnsServers": null,
@@ -77,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:3",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -145,7 +132,7 @@
     "cpuArchitecture": null
   },
   "cpu": "512",
-  "revision": 1,
+  "revision": 3,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
