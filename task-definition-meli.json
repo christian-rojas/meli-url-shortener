@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
+  "executionRoleArn": "arn:aws:iam::254263330845:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/task-meli-definition",
+          "awslogs-group": "/ecs/task-definition-meli",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -28,7 +28,7 @@
       "environment": [
         {
           "name": "AWS_ACCESS_KEY_ID",
-          "value": "AKIATWM2GRAOVUMYJI6R"
+          "value": "AKIATWM2GRAO3RAK4EPJ"
         },
         {
           "name": "AWS_DEFAULT_REGION",
@@ -36,7 +36,7 @@
         },
         {
           "name": "AWS_SECRET_ACCES_KEY",
-          "value": "cJlH3fAgJQkDjbEEQisr96KULP3CU+tIzO+g3qK3"
+          "value": "IKz2BzPU2hf+3CmGvcCamh1JjMFvkumyNtGAgVXx"
         }
       ],
       "resourceRequirements": null,
@@ -71,14 +71,14 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "512",
+  "memory": "1024",
   "taskRoleArn": "arn:aws:iam::254263330845:role/ecs-task-role",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-meli-definition:1",
-  "family": "task-meli-definition",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:1",
+  "family": "task-definition-meli",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -144,7 +144,7 @@
     "operatingSystemFamily": "LINUX",
     "cpuArchitecture": null
   },
-  "cpu": "256",
+  "cpu": "512",
   "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
