@@ -5,13 +5,13 @@ import {
 } from 'aws-sdk/clients/dynamodb';
 import * as base62 from 'base62-ts';
 import { FastifyReply } from 'fastify';
-import { client } from '../config/index';
+import { client, dynamoTable } from '../config/index';
 
 export const insertUrl = async (url: string, path: string) => {
 	const uniqueId = Math.floor(Math.random() * Date.now());
 	const shortUrl = `${path}/${base62.encode(uniqueId)}`;
 	var params: PutItemInput = {
-		TableName: 'meli_shortener',
+		TableName: dynamoTable.tableName,
 		Item: {
 			id: { S: uniqueId.toString() },
 			shortUrl: { S: shortUrl },
@@ -30,7 +30,7 @@ export const insertUrl = async (url: string, path: string) => {
 export const deleteUrl = async (longUrl: string) => {
 	const statement: ExecuteStatementInput = {
 		Statement: `
-        DELETE FROM "meli_shortener"
+        DELETE FROM ${dynamoTable.tableName}
         WHERE "longUrl" = ?`,
 		Parameters: [{ S: longUrl }]
 	};
@@ -45,8 +45,8 @@ export const deleteUrl = async (longUrl: string) => {
 
 export const returnLongUrl = async (url: string) => {
 	const params: QueryInput = {
-		TableName: 'meli_shortener',
-		IndexName: 'shortUrl-index',
+		TableName: dynamoTable.tableName,
+		IndexName: dynamoTable.tableIndexName,
 		KeyConditionExpression: 'shortUrl = :short',
 		ExpressionAttributeValues: {
 			':short': { S: url }
@@ -63,7 +63,7 @@ export const returnLongUrl = async (url: string) => {
 
 export const returnShortUrl = async (url: string) => {
 	const params: QueryInput = {
-		TableName: 'meli_shortener',
+		TableName: dynamoTable.tableName,
 		KeyConditionExpression: 'longUrl = :long',
 		ExpressionAttributeValues: {
 			':long': { S: url }
@@ -83,8 +83,8 @@ export const returnShortUrl = async (url: string) => {
 
 export const redirectUrl = async (url: string, reply: FastifyReply, path: string) => {
 	const params: QueryInput = {
-		TableName: 'meli_shortener',
-		IndexName: 'shortUrl-index',
+		TableName: dynamoTable.tableName,
+		IndexName: dynamoTable.tableIndexName,
 		KeyConditionExpression: 'shortUrl = :short',
 		ExpressionAttributeValues: {
 			':short': { S: `${path}${url}` }

@@ -9,4 +9,9 @@ import { DynamoDB } from 'aws-sdk';
 //     region: process.env.AWS_DEFAULT_REGION as string
 // })
 
+export const dynamoTable = {
+    tableName: process.env.TABLE_NAME as string,
+    tableIndexName: process.env.TABLE_INDEX_NAME as string
+}
+
 export const client = new DynamoDB({region: 'us-east-1'})
