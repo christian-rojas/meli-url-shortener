@@ -25,27 +25,13 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "AWS_DEFAULT_REGION",
-          "value": "us-east-1"
-        }
-      ],
+      "environment": [],
       "resourceRequirements": null,
       "ulimits": null,
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": [
-        {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9::AWS_ACCESS_KEY_ID:",
-          "name": "AWS_ACCESS_KEY_ID"
-        },
-        {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9::AWS_SECRET_ACCES_KEY:",
-          "name": "AWS_SECRET_ACCES_KEY"
-        }
-      ],
+      "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": 128,
@@ -78,7 +64,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:20",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:24",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -104,12 +90,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.secrets.asm.environment-variables"
     },
     {
       "targetId": null,
@@ -147,9 +127,12 @@
     "FARGATE"
   ],
   "networkMode": "awsvpc",
-  "runtimePlatform": null,
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX",
+    "cpuArchitecture": null
+  },
   "cpu": "256",
-  "revision": 20,
+  "revision": 24,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
