@@ -20,7 +20,7 @@ COPY . ./
 
 RUN npm install
 
-RUN npm run build
+RUN AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID npm run build
 
 EXPOSE 8080
 CMD [ "node", "dist/index.js" ]
