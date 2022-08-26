@@ -13,9 +13,9 @@ export function deleteUrlShortener(request: FastifyRequest) {
 }
 
 export function returnUrl(request: FastifyRequest) {
-    const body = request.url
-    if(body.includes(getFullUrl(request))) return returnLongUrl(body)
-    return returnShortUrl(body)
+    const body = request.body as any
+    if(body.url.includes(getFullUrl(request))) return returnLongUrl(body.url)
+    return returnShortUrl(body.url)
 }
 
 export function baseShortener(request: FastifyRequest, response: FastifyReply) {

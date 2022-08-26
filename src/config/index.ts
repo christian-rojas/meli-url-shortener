@@ -3,7 +3,7 @@ import https from 'https'
 
 const agent = new https.Agent({
   keepAlive: true, 
-  maxSockets: Infinity
+  maxSockets: Infinity,
 });
 
 // export const client = new DynamoDB({
