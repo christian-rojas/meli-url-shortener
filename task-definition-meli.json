@@ -28,7 +28,11 @@
       "environment": [
         {
           "name": "AWS_DEFAULT_REGION",
-          "value": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_DEFAULT_REGION::"
+          "value": "us-east-1"
+        },
+        {
+          "name": "AWS_SECRET_ACCES_KEY",
+          "value": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_SECRET_ACCES_KEY::"
         }
       ],
       "resourceRequirements": null,
@@ -40,10 +44,6 @@
         {
           "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_ACCESS_KEY_ID::",
           "name": "AWS_ACCESS_KEY_ID"
-        },
-        {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:meli/secret-qZw9F9:AWS_SECRET_ACCES_KEY::",
-          "name": "AWS_SECRET_ACCES_KEY"
         }
       ],
       "dockerSecurityOptions": null,
@@ -78,7 +78,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:15",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:17",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -152,7 +152,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 15,
+  "revision": 17,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
