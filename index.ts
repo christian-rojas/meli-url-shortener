@@ -5,7 +5,7 @@ import AWS from 'aws-sdk';
 const server = fastify()
 
 AWS.config.update({
-  region: process.env.AWS_DEFAULT_REGION as string,
+  region: 'us-east-1',
 });
 
 server.register(createOrReturn, { prefix: '/v1' })
