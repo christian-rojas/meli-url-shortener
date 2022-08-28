@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
-    "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config -r newrelic -q dist/app.js\"",
-    "start": "npm run build && node -r newrelic -r dotenv/config dist/app.js"
+    "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config -q dist/app.js\"",
+    "start": "npm run build && node -r dotenv/config dist/app.js"
   },
   "repository": {
     "type": "git",

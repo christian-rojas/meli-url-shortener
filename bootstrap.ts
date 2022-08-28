@@ -10,6 +10,7 @@ export async function bootstrap(): Promise<FastifyInstance> {
 
   AWS.config.update({
     region: 'us-east-1',
+    // secretName = "secret/newrelic",
   });
   app.decorate('dynamo', ()=>client)
   

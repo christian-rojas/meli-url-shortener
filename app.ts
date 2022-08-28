@@ -5,9 +5,9 @@ import { cpus } from 'os';
 import cluster from 'cluster';
 
 export async function App() {
-  require('newrelic');
+  // require('newrelic');
   const numWorkers = cpus().length;
-  if (cluster.isPrimary && numWorkers > 1) {
+  if (cluster.isPrimary && numWorkers === 1) {
     console.log(`primary ${process.pid} is running, numWorkers = ${numWorkers}`);
     for (let i = 0; i < numWorkers; i++) {
       cluster.fork();
