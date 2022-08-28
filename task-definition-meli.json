@@ -40,10 +40,15 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:secret/newrelic-ugijrK",
+          "name": "NEW_RELIC"
+        }
+      ],
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 128,
+      "memoryReservation": 256,
       "volumesFrom": [],
       "stopTimeout": null,
       "image": "254263330845.dkr.ecr.us-east-1.amazonaws.com/meli-shortener-repository",
@@ -73,7 +78,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:26",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:39",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -99,6 +104,12 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.secrets.asm.environment-variables"
     },
     {
       "targetId": null,
@@ -141,7 +152,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 26,
+  "revision": 39,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
