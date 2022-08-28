@@ -1,4 +1,4 @@
-import Redis from 'ioredis';
+
 import { createClient } from 'redis';
 
 export const redisClient = () => {
