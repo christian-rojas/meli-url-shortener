@@ -5,6 +5,7 @@ import { cpus } from 'os';
 import cluster from 'cluster';
 
 export async function App() {
+  require('newrelic');
   const numWorkers = cpus().length;
   if (cluster.isPrimary && numWorkers > 1) {
     console.log(`primary ${process.pid} is running, numWorkers = ${numWorkers}`);

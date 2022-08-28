@@ -1,9 +1,9 @@
 import fastify, { FastifyInstance } from 'fastify';
 import AWS from 'aws-sdk';
 import { createOrReturn, deleteRoute, redirectRoute, returnUrlRoute } from './src/routes';
+import { client } from './src/config';
 
 export async function bootstrap(): Promise<FastifyInstance> {
-  // const port: number = parseInt(process.env.PORT || '8080', 10);
   const app: FastifyInstance = fastify({
     logger: false,
   });
@@ -11,6 +11,7 @@ export async function bootstrap(): Promise<FastifyInstance> {
   AWS.config.update({
     region: 'us-east-1',
   });
+  app.decorate('dynamo', ()=>client)
   
   app.register(createOrReturn, { prefix: '/v1' })
   app.register(deleteRoute, { prefix: '/v1' })
