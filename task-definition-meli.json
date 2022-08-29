@@ -20,9 +20,16 @@
           "hostPort": 8080,
           "protocol": "tcp",
           "containerPort": 8080
+        },
+        {
+          "hostPort": 6379,
+          "protocol": "tcp",
+          "containerPort": 6379
         }
       ],
-      "command": null,
+      "command": [
+        "redis-server"
+      ],
       "linuxParameters": null,
       "cpu": 0,
       "environment": [
@@ -40,15 +47,10 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": [
-        {
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:secret/newrelic-ugijrK",
-          "name": "NEW_RELIC"
-        }
-      ],
+      "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 256,
+      "memoryReservation": 300,
       "volumesFrom": [],
       "stopTimeout": null,
       "image": "254263330845.dkr.ecr.us-east-1.amazonaws.com/meli-shortener-repository",
@@ -68,7 +70,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "meli-container"
+      "name": "meli-contaienr"
     }
   ],
   "placementConstraints": [],
@@ -78,7 +80,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:39",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:47",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -104,12 +106,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.secrets.asm.environment-variables"
     },
     {
       "targetId": null,
@@ -152,7 +148,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 39,
+  "revision": 47,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

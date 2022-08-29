@@ -4,13 +4,14 @@ import { createClient } from 'redis';
 export const redisClient = () => {
 
     const client = createClient(
-{
-  socket: {
-    port: 6379,
-    host: '54.165.94.29'
-  }
-}
-);
+            {
+                socket: {
+                    keepAlive: 10000,
+                    port: 6379,
+                    host: '0.0.0.0'
+                }
+            }
+        );
     client.connect();
     client.on('error', (err) => console.log('Redis Client Error', err));
     return client
