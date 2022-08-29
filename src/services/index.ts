@@ -6,11 +6,8 @@ import {
 import * as base62 from 'base62-ts';
 import { FastifyReply } from 'fastify';
 import { client, dynamoTable } from '../config/index';
-import { checkIfKeyExists } from '../utils';
-import { redisClient } from '../utils/redisClient';
 
 export const insertUrl = async (url: string, path: string) => {
-	await checkIfKeyExists(url)
 	const uniqueId = Math.floor(Math.random() * Date.now());
 	const shortUrl = `${path}/${base62.encode(uniqueId)}`;
 	const params: PutItemInput = {
@@ -26,12 +23,9 @@ export const insertUrl = async (url: string, path: string) => {
 	try {
 		const response: any = (await client.putItem(params).promise()).$response.httpResponse.statusCode;
 		if(response === 200) {
-			await redisClient().set(url, shortUrl);
-			await redisClient().set(shortUrl, url);
 			return shortUrl
 		};
 	} catch (error: any) {
-		await redisClient().set(url, `the input url ${url} exists ${error.message}`);
 		return `the input url ${url} exists ${error.message}`;
 	}
 };
@@ -43,24 +37,17 @@ export const deleteUrl = async (longUrl: string) => {
         WHERE "longUrl" = ?`,
 		Parameters: [{ S: longUrl }]
 	};
-	const cachedResponse = await redisClient().get("del"+longUrl)
-	if(!cachedResponse?.length) {
-		try {
-			const response = (await client.executeStatement(statement).promise()).$response.httpResponse;
-			if(response.statusCode === 200){
-				await redisClient().set("del"+longUrl, `url ${longUrl} does not exists anymore`);
-				return `url ${longUrl} deleted`;
-			}
-		} catch (error) {
-			return { message: `An error ocurred`, error}
+	try {
+		const response = (await client.executeStatement(statement).promise()).$response.httpResponse;
+		if(response.statusCode === 200){
+			return `url ${longUrl} deleted`;
 		}
-	}else{
-		return redisClient().get("del"+longUrl);
+	} catch (error) {
+		return { message: `An error ocurred`, error}
 	}
 };
 
 export const returnLongUrl = async (url: string) => {
-	await checkIfKeyExists(url)
 	const params: QueryInput = {
 		TableName: dynamoTable.tableName,
 		IndexName: dynamoTable.tableIndexName,
@@ -77,7 +64,6 @@ export const returnLongUrl = async (url: string) => {
 			const res = Buffer.from(response.body, 'base64').toString();
 			const { Items } = JSON.parse(res);
 			const longUrl = Items[0].longUrl.S
-			await redisClient().set(url, longUrl );
 			return longUrl;
 		} 
 	} catch (error) {
@@ -86,7 +72,6 @@ export const returnLongUrl = async (url: string) => {
 };
 
 export const returnShortUrl = async (url: string) => {
-	await checkIfKeyExists(url)
 	const params: QueryInput = {
 		TableName: dynamoTable.tableName,
 		KeyConditionExpression: 'longUrl = :long',
@@ -107,10 +92,6 @@ export const returnShortUrl = async (url: string) => {
 };
 
 export const redirectUrl = async (url: string, reply: FastifyReply, path: string) => {
-	const cachedResponse = await redisClient().get(`${path}${url}`)
-	if(cachedResponse) {
-		reply.redirect(302, cachedResponse);
-	}
 	const params: QueryInput = {
 		TableName: dynamoTable.tableName,
 		IndexName: dynamoTable.tableIndexName,

@@ -1,4 +1,4 @@
-import { DynamoDB, ElastiCache } from 'aws-sdk';
+import { DynamoDB } from 'aws-sdk';
 import https from 'https'
 
 const agent = new https.Agent({
@@ -20,7 +20,5 @@ export const dynamoTable = {
     tableName: process.env.TABLE_NAME as string,
     tableIndexName: process.env.TABLE_INDEX_NAME as string
 }
-
-// export const redisClient = new ElastiCache({ region: "us-east-1" });
 
 export const client = new DynamoDB({region: 'us-east-1', httpOptions: {agent}})

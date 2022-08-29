@@ -27,9 +27,7 @@
           "containerPort": 6379
         }
       ],
-      "command": [
-        "redis-server"
-      ],
+      "command": [],
       "linuxParameters": null,
       "cpu": 0,
       "environment": [
@@ -47,7 +45,10 @@
       "dnsServers": null,
       "mountPoints": [],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [{
+        "name": "NEW_RELIC",
+        "valueFrom": "arn:aws:secretsmanager:us-east-1:254263330845:secret:secret/newrelic-ugijrK"
+      }],
       "dockerSecurityOptions": null,
       "memory": null,
       "memoryReservation": 300,
