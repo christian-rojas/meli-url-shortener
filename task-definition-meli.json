@@ -70,7 +70,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "meli-contaienr"
+      "name": "meli-container"
     }
   ],
   "placementConstraints": [],
@@ -80,7 +80,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:47",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:254263330845:task-definition/task-definition-meli:48",
   "family": "task-definition-meli",
   "requiresAttributes": [
     {
@@ -148,7 +148,7 @@
     "cpuArchitecture": null
   },
   "cpu": "256",
-  "revision": 47,
+  "revision": 48,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
